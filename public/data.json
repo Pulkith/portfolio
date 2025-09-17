@@ -208,5 +208,87 @@
                 ""
             ]
         }
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "name": "Neural Trading Engine",
+            "description": "AI-powered algorithmic trading platform using deep reinforcement learning to optimize portfolio management with real-time market analysis.",
+            "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
+            "link": "https://github.com/pulkith/neural-trading",
+            "priority": 3
+        },
+        {
+            "id": 2,
+            "name": "Quantum Simulator",
+            "description": "High-performance quantum circuit simulator with visualization capabilities for quantum algorithm research.",
+            "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop",
+            "link": "https://github.com/pulkith/quantum-sim",
+            "priority": 2
+        },
+        {
+            "id": 3,
+            "name": "Medical AI Assistant",
+            "description": "LLM-based diagnostic assistance tool for healthcare professionals with multi-modal input support.",
+            "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop",
+            "link": "https://medical-ai.pulkith.com",
+            "priority": 3
+        },
+        {
+            "id": 4,
+            "name": "Blockchain Voting System",
+            "description": "Secure, transparent voting platform built on Ethereum with zero-knowledge proofs for privacy.",
+            "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop",
+            "link": "https://github.com/pulkith/blockchain-voting",
+            "priority": 2
+        },
+        {
+            "id": 5,
+            "name": "Real-time Collaboration IDE",
+            "description": "VS Code-inspired collaborative coding environment with live cursors, voice chat, and AI code completion.",
+            "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop",
+            "link": "https://github.com/pulkith/collab-ide",
+            "priority": 2
+        },
+        {
+            "id": 6,
+            "name": "Climate Data Visualizer",
+            "description": "Interactive dashboard for climate change data analysis with predictive modeling and geospatial visualization.",
+            "image": "https://images.unsplash.com/photo-1569163139792-de1ac9c82804?w=400&h=300&fit=crop",
+            "link": "https://climate-viz.pulkith.com",
+            "priority": 1
+        },
+        {
+            "id": 7,
+            "name": "Autonomous Drone Swarm",
+            "description": "Coordinated multi-drone system for search and rescue operations using distributed AI algorithms.",
+            "image": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&h=300&fit=crop",
+            "link": "https://github.com/pulkith/drone-swarm",
+            "priority": 3
+        },
+        {
+            "id": 8,
+            "name": "Social Media Analytics",
+            "description": "Sentiment analysis and trend prediction platform for social media marketing campaigns.",
+            "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop",
+            "link": "https://github.com/pulkith/social-analytics",
+            "priority": 1
+        },
+        {
+            "id": 9,
+            "name": "AR Navigation System",
+            "description": "Augmented reality mobile app for indoor navigation in large buildings with real-time path optimization.",
+            "image": "https://images.unsplash.com/photo-1592478411213-6153e4ebc696?w=400&h=300&fit=crop",
+            "link": "https://ar-nav.pulkith.com",
+            "priority": 2
+        },
+        {
+            "id": 10,
+            "name": "Smart Energy Grid",
+            "description": "IoT-based energy management system for smart homes with ML-powered consumption optimization.",
+            "image": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=300&fit=crop",
+            "link": "https://github.com/pulkith/smart-energy",
+            "priority": 1
+        }
     ]
 }
