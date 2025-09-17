@@ -564,23 +564,26 @@ Projects CSS
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
 .project-card {
     grid-column: span var(--card-width, 1);
-    grid-row: span var(--card-height, 1);
     background: linear-gradient(145deg, var(--light-navy) 0%, var(--lightest-navy) 100%);
     border-radius: 20px;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: 
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease,
+        grid-column 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid rgba(100, 255, 218, 0.1);
     position: relative;
-    min-height: 200px;
+    height: 280px; // Fixed height for all cards (consistent rows)
     cursor: pointer;
 }
 
@@ -603,9 +606,23 @@ Projects CSS
 
 .project-card:hover,
 .project-card.hovered {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-    border-color: rgba(100, 255, 218, 0.4);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+// Smooth expansion animations
+.project-card.expanding {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    border-color: rgba(100, 255, 218, 0.6);
+    z-index: 10;
+}
+
+.project-card.shrinking {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-color: rgba(100, 255, 218, 0.1);
 }
 
 .project-card-inner {
@@ -617,21 +634,22 @@ Projects CSS
     z-index: 2;
 }
 
-// Different layouts for different card sizes
+// Layout optimizations for different card sizes
 .project-card-1x1 .project-card-inner {
     text-align: center;
+    justify-content: center;
 }
 
 .project-card-2x1 .project-card-inner,
 .project-card-3x1 .project-card-inner {
     flex-direction: row;
     align-items: center;
+    text-align: left;
 }
 
-.project-card-2x2 .project-card-inner,
-.project-card-3x2 .project-card-inner,
-.project-card-3x3 .project-card-inner {
-    flex-direction: column;
+.project-card-2x1 .project-content,
+.project-card-3x1 .project-content {
+    justify-content: flex-start;
 }
 
 .project-image {
@@ -654,10 +672,10 @@ Projects CSS
     flex-shrink: 0;
 }
 
-.project-card-2x2 .project-image-top,
-.project-card-3x2 .project-image-top,
-.project-card-3x3 .project-image-top {
-    height: 160px;
+// Optimized image sizing for 3-unit row system
+.project-card-3x1 .project-image-left {
+    width: 180px;
+    height: 120px;
 }
 
 .project-image img {
@@ -678,49 +696,49 @@ Projects CSS
     justify-content: center;
 }
 
-.project-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    gap: 1rem;
-}
-
 .project-name {
     color: white;
     font-size: 1.4rem;
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 0.75rem 0;
     line-height: 1.3;
-    flex: 1;
 }
 
-.project-card-1x1 .project-name {
-    font-size: 1.2rem;
-}
-
-.project-card-2x2 .project-name,
-.project-card-3x2 .project-name,
-.project-card-3x3 .project-name {
-    font-size: 1.6rem;
-}
 
 .project-link {
     color: var(--accent-color);
     text-decoration: none;
     transition: all 0.3s ease;
-    opacity: 0.7;
+    opacity: 0.8;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .project-link:hover {
     opacity: 1;
-    transform: scale(1.1);
+    transform: translateX(4px);
+}
+
+.project-link-text {
+    color: var(--accent-color);
 }
 
 .github-icon,
 .link-icon {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.project-link:hover .github-icon,
+.project-link:hover .link-icon {
+    transform: scale(1.1);
 }
 
 .project-description {
@@ -764,17 +782,45 @@ Projects CSS
 .project-card:nth-child(7) { animation-delay: 0.7s; }
 .project-card:nth-child(8) { animation-delay: 0.8s; }
 
-// Responsive design
-@media (max-width: 1200px) {
-    .projects-grid {
-        grid-template-columns: repeat(4, 1fr);
-        
-        .project-card {
-            grid-column: span min(var(--card-width, 1), 2);
-        }
-    }
+// Add CSS custom properties for smooth transitions
+.project-card {
+    --transition-duration: 0.6s;
+    --transition-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+// Smooth grid expansion/contraction animations
+.project-card.expanding {
+    animation: smoothExpand var(--transition-duration) var(--transition-easing) forwards;
+}
+
+.project-card.contracting {
+    animation: smoothContract var(--transition-duration) var(--transition-easing) forwards;
+}
+
+// Grid system optimized for 3-unit rows
+.projects-grid {
+    // CSS Grid with 3 columns for optimal variety
+    grid-template-columns: repeat(3, 1fr);
+    // Ensure grid items are properly aligned
+    align-items: start;
+    // Grid gap for consistent spacing
+    gap: 1.5rem;
+}
+
+// Grid auto-placement for optimal flow
+.project-card-1x1 {
+    grid-column: span 1;
+}
+
+.project-card-2x1 {
+    grid-column: span 2;
+}
+
+.project-card-3x1 {
+    grid-column: span 3;
+}
+
+// Responsive design
 @media (max-width: 768px) {
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -782,9 +828,8 @@ Projects CSS
         padding: 0 1rem;
         
         .project-card {
-            grid-column: span 1;
-            grid-row: span 1;
-            min-height: 250px;
+            grid-column: span min(var(--card-width, 1), 2);
+            height: 320px; // Slightly taller on mobile
         }
         
         .project-card-inner {
@@ -805,6 +850,11 @@ Projects CSS
 @media (max-width: 480px) {
     .projects-grid {
         grid-template-columns: 1fr;
+        
+        .project-card {
+            grid-column: span 1;
+            height: 280px;
+        }
     }
 }
   

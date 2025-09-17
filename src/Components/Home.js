@@ -273,81 +273,91 @@ function Home() {
         return x - Math.floor(x);
     }
 
-    // Grid optimization algorithm
+    // Grid optimization algorithm - Fixed 3-unit rows with variety
     function optimizeProjectsGrid(projects, expandedId = null) {
         if (!projects.length) return [];
         
-        const GRID_WIDTH = 6; // Base grid units
-        const config = projects.map((project, index) => {
-            let width = 1, height = 1;
+        const UNITS_PER_ROW = 3;
+        
+        // Define layout patterns for variety (all sum to 3 units)
+        const layoutPatterns = [
+            [3], // One full-width card
+            [2, 1], // One medium, one small
+            [1, 2], // One small, one medium  
+            [1, 1, 1] // Three small cards
+        ];
+        
+        // Shuffle projects by priority but maintain some randomness
+        const shuffledProjects = [...projects].sort((a, b) => {
+            const priorityDiff = (b.priority || 1) - (a.priority || 1);
+            if (priorityDiff !== 0) return priorityDiff;
             
-            // Use seeded random for consistent layouts
-            const seed1 = (project.id || index) * 7 + 123;
-            const seed2 = (project.id || index) * 11 + 456;
-            const rand1 = seededRandom(seed1);
-            const rand2 = seededRandom(seed2);
-            
-            // Apply priority sizing with consistent randomness
-            if (project.priority === 3) {
-                width = 2; height = 2;
-            } else if (project.priority === 2) {
-                width = rand1 > 0.5 ? 2 : 1;
-                height = width === 2 ? (rand2 > 0.3 ? 2 : 1) : 1;
-            }
-            
-            // Handle expansion
-            if (expandedId === project.id) {
-                width = Math.min(width + 1, 3);
-                height = Math.min(height + 1, 3);
-            }
-            
-            return {
-                ...project,
-                id: project.id || index,
-                width,
-                height,
-                originalWidth: width,
-                originalHeight: height
-            };
+            // Use seeded random for tie-breaking to maintain consistency
+            const seedA = (a.id || 0) * 7 + 123;
+            const seedB = (b.id || 0) * 7 + 123;
+            return seededRandom(seedA) - seededRandom(seedB);
         });
         
-        // Grid optimization logic
         const optimizedConfig = [];
-        let currentRow = [];
-        let currentRowWidth = 0;
+        let projectIndex = 0;
+        let rowIndex = 0;
         
-        for (let i = 0; i < config.length; i++) {
-            const item = { ...config[i] };
+        while (projectIndex < shuffledProjects.length) {
+            // Choose layout pattern based on row index for variety
+            const patternIndex = rowIndex % layoutPatterns.length;
+            const pattern = layoutPatterns[patternIndex];
             
-            // Check if item fits in current row
-            if (currentRowWidth + item.width <= GRID_WIDTH) {
-                currentRow.push(item);
-                currentRowWidth += item.width;
-            } else {
-                // Fill remaining space in current row if needed
-                if (currentRowWidth < GRID_WIDTH && currentRow.length > 0) {
-                    const lastItem = currentRow[currentRow.length - 1];
-                    if (lastItem.width === 1 && currentRowWidth < GRID_WIDTH) {
-                        lastItem.width = Math.min(2, GRID_WIDTH - currentRowWidth + 1);
+            // Create row using the selected pattern
+            const row = [];
+            for (let i = 0; i < pattern.length && projectIndex < shuffledProjects.length; i++) {
+                const project = shuffledProjects[projectIndex];
+                let width = pattern[i];
+                
+                // Handle expansion - expand current card and adjust others in row
+                if (expandedId === project.id) {
+                    // Expand this card and shrink others proportionally
+                    if (pattern.length === 1) {
+                        width = 3; // Already full width
+                    } else if (pattern.length === 2) {
+                        width = 3;
+                        // Skip next project in pattern to make room
+                        if (i === 0 && projectIndex + 1 < shuffledProjects.length) {
+                            projectIndex++; // Skip next project
+                        }
+                        break; // End this row
+                    } else if (pattern.length === 3) {
+                        width = 2;
+                        // Adjust remaining pattern
+                        if (i === 0) {
+                            pattern.splice(1, 2, 1); // Change [1,1,1] to [2,1]
+                        } else if (i === 1) {
+                            pattern.splice(0, 1); // Skip first, make this [2,1]
+                            pattern[0] = 2;
+                            pattern[1] = 1;
+                        } else {
+                            pattern.splice(0, 2, 1); // Change to [1,2]
+                            pattern[0] = 1;
+                            pattern[1] = 2;
+                        }
                     }
                 }
                 
-                // Start new row
-                optimizedConfig.push(...currentRow);
-                currentRow = [item];
-                currentRowWidth = item.width;
+                row.push({
+                    ...project,
+                    id: project.id || projectIndex,
+                    width,
+                    height: 1, // Fixed height for all cards
+                    row: rowIndex,
+                    originalWidth: pattern[i],
+                    originalHeight: 1
+                });
+                
+                projectIndex++;
             }
-        }
-        
-        // Handle last row
-        if (currentRow.length > 0) {
-            if (currentRowWidth < GRID_WIDTH && currentRow.length > 0) {
-                const lastItem = currentRow[currentRow.length - 1];
-                if (lastItem.width === 1) {
-                    lastItem.width = Math.min(2, GRID_WIDTH - currentRowWidth + 1);
-                }
-            }
-            optimizedConfig.push(...currentRow);
+            
+            // Add row to config
+            optimizedConfig.push(...row);
+            rowIndex++;
         }
         
         return optimizedConfig;
@@ -818,22 +828,21 @@ function ProjectCard(props) {
                     </div>
                 )}
                 <div className="project-content">
-                    <div className="project-header">
-                        <h3 className="project-name">{data.name}</h3>
-                        {data.link && (
-                            <a href={data.link} target="_blank" rel="noopener noreferrer" className="project-link">
-                                {isGitHub ? (
-                                    <svg className="github-icon" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                    </svg>
-                                ) : (
-                                    <svg className="link-icon" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                                    </svg>
-                                )}
-                            </a>
-                        )}
-                    </div>
+                    <h3 className="project-name">{data.name}</h3>
+                    {data.link && (
+                        <a href={data.link} target="_blank" rel="noopener noreferrer" className="project-link">
+                            <span className="project-link-text">View Project</span>
+                            {isGitHub ? (
+                                <svg className="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            ) : (
+                                <svg className="link-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
+                                </svg>
+                            )}
+                        </a>
+                    )}
                     <p className="project-description">{data.description}</p>
                 </div>
             </div>
