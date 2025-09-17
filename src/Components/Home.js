@@ -55,25 +55,25 @@ function Home() {
     ***********************************************/
 
     React.useEffect(() => {
-    const typed = new Typed(el.current, {
-        strings: ['Software Engineer', 'Reseacher', 'Robotics Engineer', 'Entrepreneur', 'Competitive Programmer'],
-        typeSpeed: 50,
-        backSpeed: 20,
-        startDelay: 0,
-        loop: true,
-        backDelay: 1000,
-        onBegin: (self) => {
-            if(currentcount++ == 1) {
-                self.startDelay = 2400
-            } else {
-                self.startDelay = 0
-            }
-        },
-    });
+    // const typed = new Typed(el.current, {
+    //     strings: ['Software Engineer', 'Reseacher', 'Robotics Engineer', 'Entrepreneur', 'Competitive Programmer'],
+    //     typeSpeed: 50,
+    //     backSpeed: 20,
+    //     startDelay: 0,
+    //     loop: true,
+    //     backDelay: 1000,
+    //     onBegin: (self) => {
+    //         if(currentcount++ == 1) {
+    //             self.startDelay = 2400
+    //         } else {
+    //             self.startDelay = 0
+    //         }
+    //     },
+    // });
 
     return () => {
         // Destroy Typed instance during cleanup to stop animation
-        typed.destroy();
+        // typed.destroy();
     };
     }, []);
 
@@ -300,7 +300,8 @@ function Home() {
                         Pulkith Paruchuri<span className="dot">.</span>
                     </div>
                     <div className="IAmAWrapper fadeindelayed2">
-                        I am a <span className="underlineWrapper gradtext"><span ref={el} /></span>
+                        {/* I am a */}
+                         <span className="underlineWrapper gradtext"><span ref={el} /></span>
                     </div>
                     <div className="jumpingArrowWrapper  hidebounceruntil">
                         <div className="jumpingArrow bounce" onClick={autozoom}>
