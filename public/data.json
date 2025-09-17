@@ -1,0 +1,143 @@
+{
+    "education": [
+        {
+            "school": "University of Pennsylvania—Wharton",
+            "location": "Philadelphia, Pennsyvlania",
+            "years": "Expected Graduation: May 2026",
+            "majordescriptions": {
+                "The Jerome Fisher Program in Management and Technology (M&T)":[
+                    "BS, Computer Science (concentration in Data Science)",
+                    "BS, Economics (concentrations in Finance & Statistics)"
+                ]
+            },
+            "minordescriptions": {
+                "Activities:":{
+                    "Wharton Analytics Fellows": "Developing Machine Learning Models for IEKA to suggest new store locations and improve online retail user retention.",
+                    "Penn Labs": "Developing a general mobile application for the university, used by over 25,000 students and fauculty daily.",
+                    "Hack4Impact": "Technical Lead & Project Manager, leading a team of 15+ members to develop full-stack applications for local non-profits in the Philadelphia region using the MERN Stack.",
+                    "MUSE": "Developing and marketing a subletting application for use by Penn students and fauculty.",
+                    "WITG": "Quantitative Investment Strategies Team–Researching and implementing trading strategies and algorithms"
+                }
+            },
+            "coursework": [
+                "Multivariate Calculus",
+                "Linear Algebra",
+                "Probability",
+                "Mathematical Foundations of Computer Science",
+                "Programming Languages and Techniques I",
+                "Introductory Economics",
+                "Managerial Economics",
+                "Introduction to Management"
+            ]
+            
+        }, {
+            "school": "Heritage High School",
+            "location": "Dallas, Texas",
+            "majordescriptions": [
+                "Valedictorian (Rank 1/510 students), 4.0/4.0 GPA",
+                "Fauculty Choice Award",
+                "1580 SAT (800 Math)"
+            ],
+            "minordescriptions": {
+                "Activities:": {
+                    "Computer Science Club President": "Taught over 300 students about competitive programming, won over 40 local and national contests, and raised over $25K",
+                    "Robotics Club Vice President of Programming and Electrics": "Led the Programming and Electrical team with over 50 students, designed and built 120lb robots, raised over $50K, and performed STEM outreach in my community",
+                    "AI Club President": "Taught over 30 students about the fundementals of Machine Learning, and discussed breakthroughs and news in the field of Data Science and AI",
+                    "Science Fair Club President": "Helped lead and mentor over 20 students to compete in our local, state, and international science fairs",
+                    "Math Honor Society": "Won state championship in the general mathematics category out of over 600+ schools",
+                    "Business Professionals of America": "Competed at the local, state, and national levels, and won 2 national championship, 2 state championships, and 5 local championships",
+                    "Personal Finance Club Officer": "Helped teach over 30 students about personal finance, including investing, money management tips, and credit.",
+                    "Symphony Orchestra": "Played in the top orchestra, and played the viola for all 7 years of middle and high school."
+                }
+            },
+            "coursework": [
+                "AP Physics C: Mechanics",
+                "AP Physics C: Electricity and Magnetism",
+                "AP Physics 2",
+                "AP Physics 1",
+                "AP Calculus BC",
+                "AP Computer Science",
+                "AP Statistics",
+                "AP Macroeconomics",
+                "Advanced Computer Science"
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "company": "Lockheed Martin",
+            "position": "Software Engineer Intern",
+            "years": "Summers 2021—2023",
+            "sortyears":"2021-2023",
+            "image": "https://www.edrmagazine.eu/wp-content/uploads/2023/02/F-35GermanCoverHoriz_Copyright-Lockheed-Martin-800x534.jpeg",
+            "impact": [
+                "Aided in developing a suite of internal applications used by 10K+ employees, using the MEAN stack.",
+                "Facilitated intern meetings, recognized as top-performing intern in task completion, and won 2nd at AWS Gameday."
+            ]
+        },
+        {
+            "company": "Massachusetts Institute of Technology",
+            "position": "Computational Neuroscience Researcher",
+            "years": "2022—2023",
+            "sortyears":"2022-2023",
+            "image": "https://www.mit.edu/files/images/201807/15656704711_00457bd2c9_b_1.jpg",
+            "impact": [
+                "Developed novel machine-learning-backed analytic systems and platforms for use with neuroimaging and vocal data to identify bias in biomarkers for Parkinson’s Disease diagnosis and classification, with 95% accuracy. (paper)"
+            ]
+        },
+        {
+            "company": "Neurose",
+            "position": "President",
+            "years": "2020—2023",
+            "sortyears":"2020-P",
+            "image": "/assets/experienceimages/neurose.png",
+            "impact": [
+                "Directing a team of 75+ members, working with 16 research labs, and running clinical trials with 124 patients.",
+                "Raised over $70K, received congressional recognition and 10+ awards, and published 7 papers/conferences."
+            ]
+        },
+        {
+            "company": "Princeton University",
+            "position": "Computational Materials Science Research Intern",
+            "years": "2022",
+            "sortyears":"2022-2022",
+            "image": "https://www.princeton.edu//sites/default/files/images/2017/06/20060425_NassauHall_JJ_IMG_5973.jpg",
+            "impact": [
+                "Designed 4 dataset generation algorithms for neural polymer-enzyme interaction simulations with active learning.",
+                "Wrote and published a paper in the program journal. Findings are being utilized for experiments at Rutgers."
+            ]
+        },
+        {
+            "company": "GuideRunners",
+            "position": "Technology Lead",
+            "years": "2022—2023",
+            "sortyears":"2020-2023",
+            "image": "https://a.espncdn.com/photo/2016/0922/r129677_1296x729_16-9.jpg",
+            "impact": [
+                "Led a team of 30 volunteers to meet with stakeholders and develop the organization’s website, with 20K users.",
+                "Assisted in raising $76K+ and recruiting 7,000 new volunteers. Earned 2 awards for volunteer work."
+            ]
+        },
+        {
+            "company": "Vibha",
+            "position": "Software Development Lead",
+            "years": "2020—2022",
+            "sortyears":"2020-2022",
+            "image": "https://media.licdn.com/dms/image/C4E1BAQHmrd6euUcH5A/company-background_10000/0/1608877619506/vibha_cover?e=2147483647&v=beta&t=P5fMyEdzF-aHu2XyoxYRVIA9w8yZb5rvdiTi10bQCis",
+            "impact": [
+                "Managed a team of 15 volunteers to develop a chapter website and a national app, which helped raise $25K."
+            ]
+        },
+        {
+            "template": true,
+            "company": "",
+            "position": "",
+            "years": "",
+            "sortyears":"20202-2022",
+            "image": "",
+            "impact": [
+                ""
+            ]
+        }
+    ]
+}
