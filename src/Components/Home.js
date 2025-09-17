@@ -24,8 +24,8 @@ function Home() {
     /**********************************************
         Constants
     ***********************************************/
-        const REG_ZOOM_SPEED = .8;
-        let AUTO_ZOOM_SPEED = .1;
+        const REG_ZOOM_SPEED = .4; // Base speed (halved since we'll multiply by 2.0)
+        let AUTO_ZOOM_SPEED = .05; // Base auto speed (halved since we'll multiply by 2.0)
         const init_opacity = 5;
         const end_opacity = 20;
     
@@ -33,11 +33,20 @@ function Home() {
         const end_photo_opacity = 25;
     
         const zoom_min = 1;
-        const zoom_max = 23;
+        const zoom_max = 30;
 
         const auto_zoom_delay = 15;
     
         const rev_deadband = 0.2;
+
+        // EDITABLE ZOOM FOCAL POINT - Set the X,Y coordinates (0-100%) where zoom should focus
+        // These coordinates represent the focal point on the ORIGINAL image
+        const ZOOM_FOCAL_POINT_X = 58.5; // Percentage from left (0-100)
+        const ZOOM_FOCAL_POINT_Y = 47; // Percentage from top (0-100)
+
+        // ZOOM SPEED MULTIPLIER - Controls how fast zooming happens
+        // 2.0 = current speed, 4.0 = twice as fast, 1.0 = half as fast
+        const ZOOM_SPEED_MULTIPLIER = 2.0;
     /**********************************************
         States
     ***********************************************/
@@ -93,6 +102,23 @@ function Home() {
         document.addEventListener("wheel", handler);
         return () => {document.removeEventListener("wheel", handler)}
     })
+
+    // Update transform-origin on window resize
+    React.useEffect(() => {
+        const handleResize = () => {
+            const el = document.getElementById("imagetozoomhome");
+            if (el) {
+                const transformOrigin = calculateTransformOrigin();
+                el.style.transformOrigin = transformOrigin;
+            }
+        };
+        
+        window.addEventListener("resize", handleResize);
+        // Set initial transform-origin
+        handleResize();
+        
+        return () => window.removeEventListener("resize", handleResize);
+    }, [])
 
     React.useEffect(() => {
         (function ($) {
@@ -184,11 +210,56 @@ function Home() {
     /**********************************************
         Methods
     ***********************************************/
+    
+    // Calculate responsive transform-origin based on screen size and focal point
+    function calculateTransformOrigin() {
+        const el = document.getElementById("imagetozoomhome");
+        if (!el) return `${ZOOM_FOCAL_POINT_X}% ${ZOOM_FOCAL_POINT_Y}%`;
+        
+        // Get the current image element dimensions
+        const rect = el.getBoundingClientRect();
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate how the image is positioned relative to the viewport
+        // Since background-size: cover is used, we need to account for cropping
+        const imageAspectRatio = 1920 / 1080; // Adjust this to match your actual image dimensions
+        const viewportAspectRatio = windowWidth / windowHeight;
+        
+        let adjustedX = ZOOM_FOCAL_POINT_X;
+        let adjustedY = ZOOM_FOCAL_POINT_Y;
+        
+        // If viewport is wider than image aspect ratio, image is cropped vertically
+        if (viewportAspectRatio > imageAspectRatio) {
+            // Image fills width, adjust Y coordinate for vertical cropping
+            const visibleImageHeight = (imageAspectRatio / viewportAspectRatio) * 100;
+            const cropTop = (100 - visibleImageHeight) / 2;
+            adjustedY = ((ZOOM_FOCAL_POINT_Y - cropTop) / visibleImageHeight) * 100;
+            adjustedY = Math.max(0, Math.min(100, adjustedY));
+        } 
+        // If viewport is taller than image aspect ratio, image is cropped horizontally
+        else {
+            // Image fills height, adjust X coordinate for horizontal cropping
+            const visibleImageWidth = (viewportAspectRatio / imageAspectRatio) * 100;
+            const cropLeft = (100 - visibleImageWidth) / 2;
+            adjustedX = ((ZOOM_FOCAL_POINT_X - cropLeft) / visibleImageWidth) * 100;
+            adjustedX = Math.max(0, Math.min(100, adjustedX));
+        }
+        
+        return `${adjustedX}% ${adjustedY}%`;
+    }
+
     function updateZoom(deltaY, ZOOM_SPEED = REG_ZOOM_SPEED) {
         let el = document.getElementById("imagetozoomhome");
         let temp_zoom = zoom;
-        temp_zoom += (deltaY > 0) ? ZOOM_SPEED : (deltaY > -.2 ? 0 : -ZOOM_SPEED);
+        // Apply the zoom speed multiplier
+        const effectiveZoomSpeed = ZOOM_SPEED * ZOOM_SPEED_MULTIPLIER;
+        temp_zoom += (deltaY > 0) ? effectiveZoomSpeed : (deltaY > -.2 ? 0 : -effectiveZoomSpeed);
         temp_zoom = Math.max(zoom_min, Math.min(temp_zoom, zoom_max));
+        
+        // Update transform-origin dynamically based on screen size
+        const transformOrigin = calculateTransformOrigin();
+        el.style.transformOrigin = transformOrigin;
         el.style.transform = `scale(${temp_zoom})`
         let opacity = 1 - (zoom - init_opacity) / (end_opacity - init_opacity);
         opacity = clamp(0, opacity, 1)
@@ -221,6 +292,7 @@ function Home() {
         //get rid of spinner
     }
     useInterval(() => {
+        // Apply multiplier to auto zoom speed as well
         updateZoom(1, AUTO_ZOOM_SPEED += AUTO_ZOOM_SPEED);
     }, runTimer ? auto_zoom_delay : null);
     function pauseTimer() {
@@ -330,16 +402,18 @@ function Home() {
                                 <div className="col-lg-6 spacer"></div>
                                 <div className="col-lg-6 ">
                                     <p className="bold900 text350 whitetext spacedLetters005 lineheight70 mright20" style={{marginTop: "50px"}}>
-                                        I <span className="buildemphasis">build</span>. From software to robots to healthcare solutions.
+                                        I like to <span className="buildemphasis">build</span>.
                                     </p>
                                 </div>
                                 <div className="col-lg-6">
                                     <p className="aboutmefulltext bold500 text150 mtop50 mleft20">
-                                        Hey! Thanks for stopping by! I'm a student at the University of Pennsylvania (co '26) pursuing a dual degree as part of the Jerome Fisher Program in Management and Technology. I'll be graduating with a degree in Economics from the Wharton School, and with a degree in Computer Science.
+                                        Hey, Thanks for stopping by! I'm a student at the University of Pennsylvania (co '27) pursuing a dual degree as part of the Jerome Fisher Program in Management and Technology.
                                         <br /><br />
-                                        I'm originally from Dallas. As a child I loved to build entire empires from legos. I now have a passion for building things slightly more advanced than legos, like <span className="anchorwrapper"><a href="https://github.com/pulkith" target="_blank">websites & apps</a></span>, <a href="https://coyotronicsfrchhs.wixsite.com/8816" target="_blank">120-pound robots</a>, and a <a href="https://neuro-se.org" target="_blank">startup</a>.
+                                        I'm originally from Dallas. As a child I loved to build entire empires from legos. I now have a passion for building things a bit more intricate, like <span className="anchorwrapper"><a href="https://github.com/pulkith" target="_blank">websites & apps</a></span>, <a href="https://coyotronicsfrchhs.wixsite.com/8816" target="_blank"> robots</a>, and a <a href="https://www.crunchbase.com/organization/neurose" target="_blank">startup</a>.
                                         <br /><br />
-                                        I also like to build another thing—knowledge.  I have delved deep into research in the computational neuroscience field. Checkout my research papers <a href="https://research.pulkith.com" target="_blank">here</a>. 
+                                        I'm also interested in research, especially in Machine Learning, Large Language Models, and Computational Neuroscience. Checkout my papers <a href="https://research.pulkith.com" target="_blank">here</a>. 
+                                        <br /><br />
+                                        In my spare time, I enjoy reading, exploring, volleyball, F1, poker, competitive programming, playing the guitar, and quesidillas.
                                     </p>
                                 </div>
                             </div>
@@ -448,9 +522,10 @@ function keyli(d, formattitle, formatlist)  {
         </div>
     )
 }
-function arrayli(d, title, formattitle, formatlist) {
+function arrayli(d, title, formattitle, formatlist, subtitle = "") {
     return (<div>
         <div className={formattitle}>{title}</div>
+        {subtitle && <div className={formatlist}>{subtitle}</div>}
         {Li(d, formatlist)}
     </div>)
 }
@@ -512,7 +587,7 @@ function EducationComponent(props) {
                 </div>
 
                 <div className="coursework">
-                    {arrayli(data.coursework, "Relevant Coursework", "text150 zbold500 whitetext mtop20", "lightslate text125")}
+                    {arrayli(data.coursework, "Relevant Coursework", "text150 zbold500 whitetext mtop20", "lightslate text125", "(*) indicates Graduate Level ")}
                 </div>
             </div>
         </div>

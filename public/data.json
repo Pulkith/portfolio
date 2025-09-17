@@ -1,33 +1,48 @@
 {
     "education": [
         {
-            "school": "University of Pennsylvania—Wharton",
+            "school": "University of Pennsylvania",
             "location": "Philadelphia, Pennsyvlania",
-            "years": "Expected Graduation: May 2026",
+            "years": "Expected Graduation: May 2027",
             "majordescriptions": {
                 "The Jerome Fisher Program in Management and Technology (M&T)":[
-                    "BS, Computer Science (concentration in Data Science)",
-                    "BS, Economics (concentrations in Finance & Statistics)"
+                    "Wharton: BS, Economics (concentrations in Finance & Statistics)",
+                    "Engineering: BS, Computer Science (concentration in AI)",
+                    "CAS: MS, Applied Math (Accelerated Masters)"
                 ]
             },
             "minordescriptions": {
                 "Activities:":{
-                    "Wharton Analytics Fellows": "Developing Machine Learning Models for IEKA to suggest new store locations and improve online retail user retention.",
+                    "Wharton Analytics Fellows": "Vice President. Developing Machine Learning Models for IEKA to suggest new store locations and improve online retail user retention.",
+                    "FranklinDAO": "Building and researching at the intersection of AI and blockchain",
                     "Penn Labs": "Developing a general mobile application for the university, used by over 25,000 students and fauculty daily.",
-                    "Hack4Impact": "Technical Lead & Project Manager, leading a team of 15+ members to develop full-stack applications for local non-profits in the Philadelphia region using the MERN Stack.",
-                    "MUSE": "Developing and marketing a subletting application for use by Penn students and fauculty.",
-                    "WITG": "Quantitative Investment Strategies Team–Researching and implementing trading strategies and algorithms"
+                    "Hack4Impact": "Technical Lead & Project Manager, leading a team of 15+ members to develop full-stack applications for local non-profits in the Philadelphia region.",
+                    "WUFC": "Quantitative Investment Strategies Team–Researching and implementing trading strategies and algorithms",
+                    "The Daily Pennsylvanian": "Sports Editor at Penn's 140-year-old, student run newspaper",
+                    "Machine Learning Research": "Researching advances in NLP and LLMs",
+                    "CHAS Research Felow": "Fellowship and Grant to conduct independent research on LLMs"
                 }
             },
             "coursework": [
+                "Advanced Real Analysis (*)",
+                "Advanced Linear Algebra (*)",
                 "Multivariate Calculus",
-                "Linear Algebra",
-                "Probability",
-                "Mathematical Foundations of Computer Science",
-                "Programming Languages and Techniques I",
-                "Introductory Economics",
-                "Managerial Economics",
-                "Introduction to Management"
+                "Machine Learning (*)",
+                "Reinforcement Learning and Agents (*)",
+                "Algorithmic Game Theory (*)",
+                "Foundations of Natural Language Processing (*)",
+                "Stochastic Processes",
+                "Advanced Statistical Data Mining (*)",
+                "Numerical Optimization (*)",
+                "Operating Systems",
+                "Operating System Design (*)",
+                "Automata and Computability",
+                "Data Structures and Algorithms",
+                "Scalable Cloud Computing",
+                "Big Data Analytics (*)",
+                "Honors Monetary Policy ",
+                "Financial Derivatives (*)",
+                "Managerial Economics"
             ]
             
         }, {
@@ -36,7 +51,7 @@
             "majordescriptions": [
                 "Valedictorian (Rank 1/510 students), 4.0/4.0 GPA",
                 "Fauculty Choice Award",
-                "1580 SAT (800 Math)"
+                "1590 SAT (800 Math)"
             ],
             "minordescriptions": {
                 "Activities:": {
@@ -51,15 +66,7 @@
                 }
             },
             "coursework": [
-                "AP Physics C: Mechanics",
-                "AP Physics C: Electricity and Magnetism",
-                "AP Physics 2",
-                "AP Physics 1",
-                "AP Calculus BC",
-                "AP Computer Science",
-                "AP Statistics",
-                "AP Macroeconomics",
-                "Advanced Computer Science"
+                "26 AP Courses (25 5s, 1 4)"
             ]
         }
     ],
