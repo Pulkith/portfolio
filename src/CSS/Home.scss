@@ -47,48 +47,55 @@
             height: 80%;
             max-width: var(--max-content-width);
             margin: 0 auto;
-            margin-top: 10%;
+            margin-top: 5%;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            transform: translateX(-3%);
     
             .HelloItsMeWrapper {
                 color: var(--white);
                 font-weight: 900;
                 font-size: var(--subheading-landing);
+                margin-bottom: 0.5rem;
+                line-height: 1.2;
             }
             .NameWrapper {
                 color: var(--white);
                 font-weight: 900;
                 font-size: var(--heading-landing);
+                margin-bottom: 1rem;
+                line-height: 1.1;
+                max-width: 100%;
+                word-wrap: break-word;
     
                 .dot {
                     color: var(--accent-color);
-                    
                 }
             }
             .IAmAWrapper {
                 color: var(--slate);
                 font-weight: 900;
                 font-size: var(--subheading-landing-2);
-                margin-top: 25px;
+                margin-top: 1rem;
+                line-height: 1.3;
     
                 .underlineWrapper {
                     background-color: var(--grad)
                 }
             }
             .jumpingArrowWrapper {
-                
                 position: absolute;
                 bottom: 0;
                 width: min(100%, 1250px);
+                left: 50%;
+                transform: translateX(-50%);
                 .jumpingArrow {
-                    width: 75px;
-                    height: 75px;
-                    margin-left: auto;
-                    margin-right: auto;
-                    margin-bottom: 100px;
-    
                     width: 3rem;
                     height: 3rem;
-                    margin-top: 2rem;
+                    margin: 2rem auto 100px auto;
                     display: flex; 
                     color: var(--accent-color);
                     border-radius: 50%;
@@ -96,7 +103,6 @@
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
-    
                 }
                 .jumpingArrow:hover {
                     background-color: var(--accent-color);
@@ -109,6 +115,51 @@
             }
         }
     }
+    
+    @media (max-width: 1300px) {
+        .intowrapperwrapper {
+            .introwrapper {
+                padding: 0 4rem;
+                transform: translateX(0%);
+                margin-top: 8%;
+            }
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .intowrapperwrapper {
+            .introwrapper {
+                padding: 0 2.5rem;
+                transform: translateX(0%);
+                margin-top: 10%;
+                
+                .HelloItsMeWrapper,
+                .NameWrapper,
+                .IAmAWrapper {
+                    text-align: left;
+                    max-width: 95%;
+                }
+            }
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .intowrapperwrapper {
+            .introwrapper {
+                padding: 0 1.5rem;
+                transform: translateX(0%);
+                margin-top: 15%;
+                
+                .HelloItsMeWrapper,
+                .NameWrapper,
+                .IAmAWrapper {
+                    text-align: left;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+    
     .transitionscreen {
         height: 100vh;
         width: 100%;
