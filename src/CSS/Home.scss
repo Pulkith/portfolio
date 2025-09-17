@@ -258,395 +258,284 @@ Experiences CSS
 
 .experiencescreen {
     background-color: var(--navy);
-    min-height: 50vh;
+    min-height: 80vh;
+    padding: 4rem 0;
 }
-  
-  @font-face {
-    font-family: 'ESL Legend';
-    src: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Light.eot);
-    src: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Light.eot#iefix) format("embedded-opentype"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Light.woff2) format("woff2"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Light.woff) format("woff"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Light.ttf) format("truetype"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Light.svg#eicon) format("svg");
-    font-style: normal;
-    font-weight: 300;
-  }
-  @font-face {
-    font-family: 'ESL Legend';
-    src: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Regular.eot);
-    src: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Regular.eot#iefix) format("embedded-opentype"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Regular.woff2) format("woff2"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Regular.woff) format("woff"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Regular.ttf) format("truetype"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Regular.svg#eicon) format("svg");
-    font-style: normal;
-    font-weight: normal;
-  }
-  @font-face {
-    font-family: 'ESL Legend';
-    src: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Bold.eot);
-    src: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Bold.eot#iefix) format("embedded-opentype"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Bold.woff2) format("woff2"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Bold.woff) format("woff"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Bold.ttf) format("truetype"),
-    url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/fonts/legend/ESLLegend-Bold.svg#eicon) format("svg");
-    font-style: normal;
-    font-weight: bold;
-  }
-  
-  img {
-    max-width: 100%;
-  }
-  
-  .ag-format-container {
-    width: 1160px;
-    margin: 0 auto;
-  
-    position: relative;
-  }
-  
-  .ag-timeline-block {
-    padding: 300px 0;
-  }
-  .ag-timeline_title-box {
-    padding: 0 0 30px;
-  
+
+.experience-header {
     text-align: center;
-  }
-  .ag-timeline_tagline {
-    font-size: 40px;
-    color: rgb(84, 89, 95);
-  }
-  .ag-timeline_title {
-    background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/timeline/images/bg.jpg);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-  
-    background-size: cover;
+    margin-bottom: 3rem;
+}
+
+.experience-title {
+    background: linear-gradient(90.13deg,#d1aad7 .11%,#c88bc4 25.06%,#7b8fdd 50%,#86bff2 74.8%,#bbdef2 99.76%);
     -webkit-background-clip: text;
     background-clip: text;
-    text-fill-color: transparent;
-    color: transparent;
-  
-    font-size: 80px;
-  }
-  
-  .ag-timeline_item {
-    margin: 0 0 50px;
-  
-    position: relative;
-  }
-  .ag-timeline_item:nth-child(2n) {
-    text-align: right;
-  }
-  
-  .ag-timeline {
+    -webkit-text-fill-color: transparent;
     display: inline-block;
-    width: 100%;
-    max-width: 100%;
+}
+
+.experience-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 800px;
     margin: 0 auto;
-  
     position: relative;
-  }
-  .ag-timeline_line {
-    width: 2px;
-    background-color: #393935;
-  
-    position: absolute;
-    top: 2px;
-    left: 50%;
-    bottom: 0;
-  
+    
+    // Subtle timeline line
+    &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, 
+            transparent 0%, 
+            rgba(100, 255, 218, 0.2) 20%, 
+            rgba(100, 255, 218, 0.4) 50%, 
+            rgba(100, 255, 218, 0.2) 80%, 
+            transparent 100%
+        );
+        transform: translateX(-50%);
+        z-index: 0;
+    }
+}
+
+.experience-card {
+    background: linear-gradient(135deg, var(--light-navy) 0%, var(--lightest-navy) 100%);
+    border-radius: 20px;
     overflow: hidden;
-  
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
-  }
-  
-  .ag-timeline_line-progress {
-    width: 100%;
-    height: 20%;
-    background-color: var(--accent-color);
-  }
-  
-  .ag-timeline-card_box {
-    padding: 0 0 20px 50%;
-  }
-  .ag-timeline_item:nth-child(2n) .ag-timeline-card_box {
-    padding: 0 50% 20px 0;
-  }
-  .ag-timeline-card_point-box {
-    display: inline-block;
-    margin: 0 14px 0 -28px;
-  }
-  .ag-timeline_item:nth-child(2n) .ag-timeline-card_point-box {
-    margin: 0 -28px 0 14px;
-  }
-  .ag-timeline-card_point {
-    height: 50px;
-    line-height: 50px;
-    width: 50px;
-    border: 3px solid var(--accent-color);
-    background-color: #1d1d1b;
-  
-    text-align: center;
-    font-family: 'ESL Legend', sans-serif;
-    font-size: 20px;
-    color: #FFF;
-  
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-  }
-  .js-ag-active .ag-timeline-card_point {
-    color: #1d1d1b;
-    background-color: var(--accent-color);
-  }
-  .ag-timeline-card_meta-box {
-    display: inline-block;
-  }
-  .ag-timeline-card_meta {
-    // margin: 10px 0 0px;
-    font-family: 'ESL Legend', sans-serif;
-    font-weight: bold;
-    font-size: 28px;
-    color: var(--accent-color);
-  }
-  .ag-timeline-card_item {
-    display: inline-block;
-    width: 45%;
-    margin: -77px 0 0;
-    // background-color: #282828;
-    // background-image:   linear-gradient(to bottom, black 50%, var(--dark-navy) );
-    background-color: var(--light-navy);
-  
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(100, 255, 218, 0.1);
     opacity: 0;
-  
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-  
-    -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,.5);
-    -moz-box-shadow: 0 0 0 0 rgba(0,0,0,.5);
-    -o-box-shadow: 0 0 0 0 rgba(0,0,0,.5);
-    box-shadow: 0 0 0 0 rgba(0,0,0,.5);
-  
-    -webkit-transition: -webkit-transform .5s, opacity .5s;
-    -moz-transition: -moz-transform .5s, opacity .5s;
-    -o-transition: -o-transform .5s, opacity .5s;
-    transition: transform .5s, opacity .5s;
-  
+    transform: translateY(50px) scale(0.95);
     position: relative;
-  }
-  .ag-timeline_item:nth-child(2n+1) .ag-timeline-card_item {
-    -webkit-transform: translateX(-200%);
-    -moz-transform: translateX(-200%);
-    -ms-transform: translateX(-200%);
-    -o-transform: translateX(-200%);
-    transform: translateX(-200%);
-  }
-  .ag-timeline_item:nth-child(2n) .ag-timeline-card_item {
-    -webkit-transform: translateX(200%);
-    -moz-transform: translateX(200%);
-    -ms-transform: translateX(200%);
-    -o-transform: translateX(200%);
-    transform: translateX(200%);
-  }
-  .js-ag-active.ag-timeline_item:nth-child(2n+1) .ag-timeline-card_item,
-  .js-ag-active.ag-timeline_item:nth-child(2n) .ag-timeline-card_item {
-    opacity: 1;
-  
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
-    transform: translateX(0);
-  }
-  .ag-timeline-card_arrow {
-    height: 18px;
-    width: 18px;
-    margin-top: 20px;
-    background-color: #282828;
-  
-    z-index: -1;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    
+    // Timeline dot
+    &::after {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 50%;
+        width: 12px;
+        height: 12px;
+        background: var(--accent-color);
+        border-radius: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        box-shadow: 0 0 0 4px var(--light-navy), 0 0 0 6px rgba(100, 255, 218, 0.3);
+        opacity: 0;
+        transition: opacity 0.2s ease 0.2s;
+    }
+    
+    &.animate-in::after {
+        opacity: 1;
+    }
+}
+
+.experience-card::before {
+    content: '';
     position: absolute;
     top: 0;
-    right: 0;
-  
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-  .ag-timeline_item:nth-child(2n+1) .ag-timeline-card_arrow {
-    margin-left: calc(-18px / 2);
-    margin-right: calc(-18px / 2);
-  }
-  .ag-timeline_item:nth-child(2n) .ag-timeline-card_arrow {
-    margin-left: -10px;
-  
-    right: auto;
     left: 0;
-  }
-  .ag-timeline-card_img {
-    width: 100%;
-    object-fit: cover;
-  }
-  .ag-timeline-card_info {
-    padding: 20px 30px;
-  }
-  .ag-timeline-card_title {
-    display: none;
-    margin: 10px 0 0;
-  
-    font-family: 'ESL Legend', sans-serif;
-    font-weight: bold;
-    font-size: 28px;
-    color: var(--accent-color);
-  }
-  .ag-timeline-card_desc {
-    line-height: 1.45;
-  
-    font-size: 16px;
-    color: #FFF;
-  }
-  
-  
-  @media only screen and (max-width: 979px) {
-    .ag-timeline_line {
-      left: 30px;
-    }
-  
-    .ag-timeline_item:nth-child(2n) {
-      text-align: left;
-    }
-  
-    .ag-timeline-card_box,
-    .ag-timeline_item:nth-child(2n) .ag-timeline-card_box {
-      padding: 0 0 20px;
-    }
-    .ag-timeline-card_meta-box {
-      display: none;
-    }
-    .ag-timeline-card_point-box,
-    .ag-timeline_item:nth-child(2n) .ag-timeline-card_point-box {
-      margin: 0 0 0 8px;
-    }
-    .ag-timeline-card_point {
-      height: 40px;
-      line-height: 40px;
-      width: 40px;
-    }
-    .ag-timeline-card_item {
-      width: auto;
-      margin: -65px 0 0 75px
-    }
-    .ag-timeline_item:nth-child(2n+1) .ag-timeline-card_item,
-    .ag-timeline_item:nth-child(2n) .ag-timeline-card_item {
-      -webkit-transform: translateX(200%);
-      -moz-transform: translateX(200%);
-      -ms-transform: translateX(200%);
-      -o-transform: translateX(200%);
-      transform: translateX(200%);
-    }
-    .ag-timeline_item:nth-child(2n+1) .ag-timeline-card_arrow {
-      right: auto;
-      left: 0;
-    }
-    .ag-timeline-card_title {
-      display: block;
-    }
-    .ag-timeline-card_arrow {
-      margin-top: 12px;
-    }
-  }
-  
-  @media only screen and (max-width: 767px) {
-    .ag-format-container {
-      width: 96%;
-    }
-  
-    .ag-timeline-card_img {
-      height: auto;
-      width: auto;
-    }
-  }
-  
-  @media only screen and (max-width: 639px) {
-    .ag-timeline_title {
-      font-size: 60px;
-    }
-  
-    .ag-timeline-card_info {
-      padding: 10px 15px;
-    }
-    .ag-timeline-card_desc {
-      font-size: 14px;
-    }
-  }
-  
-  @media only screen and (max-width: 479px) {
-  
-  }
-  
-  @media (min-width: 768px) and (max-width: 979px) {
-    .ag-format-container {
-      width: 750px;
-    }
-  
-  }
-  
-  @media (min-width: 980px) and (max-width: 1161px) {
-    .ag-format-container {
-      width: 960px;
-    }
-  
-  }
-  .image_experience_cover {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.85);
-    width: 100%;
-    top: 0;
-  }
-  .image_experience_text_wrapper {
-    position: absolute;
-    width: 100%;
-    top: 0px;
+    right: 0;
+    height: 3px;
+    background: var(--grad);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+.experience-card:hover::before {
+    opacity: 1;
+}
+
+.experience-card-inner {
+    padding: 2.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.experience-top {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+    margin-bottom: 1.5rem;
+}
 
-  .image_experience_text {
-    color: white;
-    font-size: var(--text200);
-    font-weight: var(--bold9);
+.experience-image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.experience-image img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.experience-card:hover .experience-image img {
+    transform: scale(1.1);
+}
+
+.experience-header {
     text-align: center;
-    margin: 0 15px 0 15px;
-  }
-  .image_experience_dates {
-   color: var(--slate);
-   font-size: var(--text125); 
-   font-weight: var(--bold5);
-   text-align: center;
-  }
-  .image_experience_company {
+}
+
+.experience-position {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+}
+
+.experience-company {
     color: var(--accent-color);
-    font-size: var(--text150);
-    font-weight: var(--bold6);
-    text-align: center;
-  }
-  .actualcompanyname {
-    // padding-top: 100px;
-    transform: translateY(-14px);
-    display: inline-block;
-  }
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.experience-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.experience-dates {
+    color: var(--light-slate);
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: rgba(100, 255, 218, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.experience-location {
+    color: var(--slate);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.experience-description {
+    color: var(--light-slate);
+    line-height: 1.6;
+    
+    ul {
+        margin: 0;
+        padding-left: 1.2rem;
+        text-align: left;
+        
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            
+            &::marker {
+                color: var(--accent-color);
+            }
+        }
+    }
+    
+    p {
+        margin: 0;
+        font-size: 0.95rem;
+    }
+    
+    .experience-short-desc {
+        text-align: center;
+        font-size: 1rem;
+        color: var(--light-slate);
+        font-style: italic;
+        margin: 0;
+    }
+}
+
+// Animation states - faster and more responsive
+.experience-card.animate-in {
+    animation: experienceSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes experienceSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+// Alternating slide directions for visual interest - reduced animation time
+.experience-card:nth-child(even).animate-in {
+    animation: experienceSlideInRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.experience-card:nth-child(odd).animate-in {
+    animation: experienceSlideInLeft 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes experienceSlideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px) translateY(30px) scale(0.98); // Reduced distance for faster animation
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+    }
+}
+
+@keyframes experienceSlideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px) translateY(30px) scale(0.98); // Reduced distance for faster animation
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+    }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .experience-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .experience-card-inner {
+        padding: 1.5rem;
+    }
+    
+    .experience-position {
+        font-size: 1.2rem;
+    }
+    
+    .experience-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+  

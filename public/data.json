@@ -72,68 +72,130 @@
     ],
     "experience": [
         {
-            "company": "Lockheed Martin",
-            "position": "Software Engineer Intern",
-            "years": "Summers 2021—2023",
-            "sortyears":"2021-2023",
-            "image": "https://www.edrmagazine.eu/wp-content/uploads/2023/02/F-35GermanCoverHoriz_Copyright-Lockheed-Martin-800x534.jpeg",
-            "impact": [
-                "Aided in developing a suite of internal applications used by 10K+ employees, using the MEAN stack.",
-                "Facilitated intern meetings, recognized as top-performing intern in task completion, and won 2nd at AWS Gameday."
-            ]
+            "company": "Point72",
+            "position": "AI Investment Research Engineer Intern",
+            "years": "Summer 2025",
+            "sortyears":"2025-2025",
+            "location": "New York, NY",
+            "image": "https://avatars.githubusercontent.com/u/112506536?s=280&v=4",
+            "shortDescription": "Built systematic infra, Deep Learning Models, Risk Engine, LLM Agents, & Parallel Compute Systems"
         },
         {
-            "company": "Massachusetts Institute of Technology",
-            "position": "Computational Neuroscience Researcher",
-            "years": "2022—2023",
-            "sortyears":"2022-2023",
-            "image": "https://www.mit.edu/files/images/201807/15656704711_00457bd2c9_b_1.jpg",
-            "impact": [
-                "Developed novel machine-learning-backed analytic systems and platforms for use with neuroimaging and vocal data to identify bias in biomarkers for Parkinson’s Disease diagnosis and classification, with 95% accuracy. (paper)"
-            ]
+            "company": "PEAK6",
+            "position": "Quantitative Trading Intern",
+            "years": "August 2025",
+            "sortyears":"2025-2025",
+            "location": "Chicago, IL",
+            "image": "https://mma.prnewswire.com/media/838860/Peak6_Logo.jpg?p=twitter",
+            "shortDescription": "Volatility Trading Strategies"
         },
-        {
-            "company": "Neurose",
-            "position": "President",
-            "years": "2020—2023",
-            "sortyears":"2020-P",
-            "image": "/assets/experienceimages/neurose.png",
-            "impact": [
-                "Directing a team of 75+ members, working with 16 research labs, and running clinical trials with 124 patients.",
-                "Raised over $70K, received congressional recognition and 10+ awards, and published 7 papers/conferences."
-            ]
-        },
-        {
-            "company": "Princeton University",
-            "position": "Computational Materials Science Research Intern",
-            "years": "2022",
-            "sortyears":"2022-2022",
-            "image": "https://www.princeton.edu//sites/default/files/images/2017/06/20060425_NassauHall_JJ_IMG_5973.jpg",
-            "impact": [
-                "Designed 4 dataset generation algorithms for neural polymer-enzyme interaction simulations with active learning.",
-                "Wrote and published a paper in the program journal. Findings are being utilized for experiments at Rutgers."
-            ]
-        },
+{
+    "company": "Google",
+    "position": "Machine Learning Research Engineer",
+    "years": "Jan 2025 – May 2025",
+    "sortyears": "2025-2025",
+    "location": "Mountain View, CA",
+    "image": "https://static.dezeen.com/uploads/2025/05/sq-google-g-logo-update_dezeen_2364_col_0-852x852.jpg",
+    "shortDescription": "Time Series Research & Casual Inference."
+},
+{
+    "company": "Ordinal Capital Partners",
+    "position": "Quantitative Trader & Algorithmic Software Engineer",
+    "years": "Nov 2024 – May 2025",
+    "sortyears": "2024-2025",
+    "location": "New York, NY",
+    "image": "https://cdn.dribbble.com/userupload/41573963/file/original-ac839f228c8ebe7139e7a9cfcae7d3fa.png?format=webp&resize=400x300&vertical=center",
+    "shortDescription": "Systematic trading strategies on $15MM book."
+},
+{
+    "company": "University of Pennsylvania",
+    "position": "Machine Learning (LLM) Research Intern",
+    "years": "Oct 2024 – May 2025",
+    "sortyears": "2024-2025",
+    "location": "Philadelphia, PA",
+    "image": "https://branding.web-resources.upenn.edu/sites/default/files/styles/card_3x2/public/2022-03/UniversityofPennsylvania_Shield_RGB-2.png?h=3c287ac3&itok=HgG1DNc-",
+    "shortDescription": "LLM memory, agentic GAN frameworks, linear-time transformers"
+},
+{
+    "company": "Aeronautical Systems Incorporated",
+    "position": "Software Engineer & Infrastructure Intern",
+    "years": "Apr 2024 – Aug 2024",
+    "sortyears": "2024-2024",
+    "location": "Washington D.C.",
+    "image": "https://media.licdn.com/dms/image/v2/C4E0BAQGbNaCdgwS6RA/company-logo_200_200/company-logo_200_200/0/1631338497737?e=2147483647&v=beta&t=7aftmJ51A2R8RdhV1x3ZhBS30octo1tIBd0t2Q00UvY",
+    "shortDescription": "Agentic Tools, Distributed Inference Infra, & Research"
+},
+{
+    "company": "IKEA",
+    "position": "Machine Learning Analyst (Consultant)",
+    "years": "Sep 2023 – Jan 2024",
+    "sortyears": "2023-2024",
+    "location": "New York, NY",
+    "image": "https://logomakerr.ai/blog/wp-content/uploads/2022/05/ikea-logo-1.png",
+    "shortDescription": "Improving Customer Retention with ML"
+},
+{
+    "company": "Lockheed Martin",
+    "position": "Full-Stack Software Engineer Intern",
+    "years": "May 2021 – Aug 2023",
+    "sortyears": "2021-2023",
+    "location": "Austin, TX",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7CW6tBfURZbwMMNC8evHUzREcut2gAlvdw&s",
+    "shortDescription": "Won competitive programming competition for internship; Developed internal tools. Youngest Intern, most code shipped."
+},
+{
+    "company": "Massachusetts Institute of Technology",
+    "position": "Computational Neuroscience Researcher",
+    "years": "2022—2023",
+    "sortyears":"2022-2023",
+    "location": "Cambridge, MA",
+    "image": "https://www.mit.edu/files/images/201807/15656704711_00457bd2c9_b_1.jpg",
+    "shortDescription": "Machine Learning for Parkinson's Disease Research"
+},
+{
+    "company": "Princeton University",
+    "position": "Computational Materials Science Research Intern",
+    "years": "2022",
+    "sortyears":"2022-2022",
+    "location": "Princeton, NJ",
+    "image": "https://www.princeton.edu//sites/default/files/images/2017/06/20060425_NassauHall_JJ_IMG_5973.jpg",
+    "shortDescription": "Protein-polymer simulations & hyperspace optimization"
+},
+{
+    "company": "Stanford",
+    "position": "Computational Neuroscience Research Intern",
+    "years": "Jun 2022 – May 2023",
+    "sortyears": "2022-2023",
+    "location": "Stanford, CA",
+    "image": "https://identity.stanford.edu/wp-content/uploads/sites/3/2020/07/block-s-right.png",
+    "shortDescription": "Parkinson's Disease Research."
+},
+{
+    "company": "Neurose (Acquired)",
+    "position": "Co-Founder & President",
+    "years": "Mar 2020 – Jul 2023",
+    "sortyears": "2020-2023",
+    "location": "Dallas, TX",
+    "image": "/assets/experienceimages/neurose.png",
+    "shortDescription": "Led AI startup for Parkinson’s; $70K raised, 10+ awards"
+},
         {
             "company": "GuideRunners",
             "position": "Technology Lead",
             "years": "2022—2023",
             "sortyears":"2020-2023",
-            "image": "https://a.espncdn.com/photo/2016/0922/r129677_1296x729_16-9.jpg",
-            "impact": [
-                "Led a team of 30 volunteers to meet with stakeholders and develop the organization’s website, with 20K users.",
-                "Assisted in raising $76K+ and recruiting 7,000 new volunteers. Earned 2 awards for volunteer work."
-            ]
+            "location": "San Francisco, CA",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxObzMpJNJ_RDslvRthTaig6dhvd0sCxDpHw&s",
+            "shortDescription": "Led team of 30 to build website; raised $76K+"
         },
         {
             "company": "Vibha",
             "position": "Software Development Lead",
             "years": "2020—2022",
             "sortyears":"2020-2022",
+            "location": "Dallas, TX",
             "image": "https://media.licdn.com/dms/image/C4E1BAQHmrd6euUcH5A/company-background_10000/0/1608877619506/vibha_cover?e=2147483647&v=beta&t=P5fMyEdzF-aHu2XyoxYRVIA9w8yZb5rvdiTi10bQCis",
-            "impact": [
-                "Managed a team of 15 volunteers to develop a chapter website and a national app, which helped raise $25K."
-            ]
+            "shortDescription": "Led team of 15 to build website & app; raised $25K; Presented on National TV."
         },
         {
             "template": true,

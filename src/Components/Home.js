@@ -25,7 +25,7 @@ function Home() {
         Constants
     ***********************************************/
         const REG_ZOOM_SPEED = .4; // Base speed (halved since we'll multiply by 2.0)
-        let AUTO_ZOOM_SPEED = .05; // Base auto speed (halved since we'll multiply by 2.0)
+        const AUTO_ZOOM_SPEED_BASE = .05; // Base auto speed (halved since we'll multiply by 2.0)
         const init_opacity = 5;
         const end_opacity = 20;
     
@@ -55,9 +55,14 @@ function Home() {
         const [timer, setTimer] = useState(-1);
         const [runTimer, setRunTimer] = useState(false);
         const [panels_rollover_1_Yvals, update_panels_rollover_1_Yvals] = useState([])
+        const [autoZoomSpeed, setAutoZoomSpeed] = useState(AUTO_ZOOM_SPEED_BASE)
 
         const [rerender, setRerender] = useState();
         const [afterRender, setAfterRender] = useState();
+
+        // Data states
+        const [educationData, setEducationData] = React.useState([])    
+        const [experienceData, setExperienceData] = React.useState([])
         
     /**********************************************
         Hooks
@@ -119,6 +124,42 @@ function Home() {
         
         return () => window.removeEventListener("resize", handleResize);
     }, [])
+
+    // Scroll-triggered animations for experience cards
+    React.useEffect(() => {
+        const observerOptions = {
+            threshold: 0.1, // Lower threshold for faster triggering
+            rootMargin: '0px 0px 100px 0px' // Start animation earlier
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animate-in')) {
+                    // Much smaller delay for faster response
+                    const delay = parseInt(entry.target.dataset.index) * 50; // Reduced from 200ms to 50ms
+                    
+                    // Use requestAnimationFrame for better performance
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            if (!entry.target.classList.contains('animate-in')) {
+                                entry.target.classList.add('animate-in');
+                            }
+                        }, delay);
+                    });
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Wait for next tick to ensure DOM is ready
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.experience-card');
+            cards.forEach(card => observer.observe(card));
+        }, 100);
+
+        return () => observer.disconnect();
+    }, [experienceData])
 
     React.useEffect(() => {
         (function ($) {
@@ -199,6 +240,7 @@ function Home() {
     })
 
     React.useEffect(() => {
+        var panels_rollover_1 = $('.panel-rollover-1')
         var temp = []
         $.each(panels_rollover_1, function(i, el) {
             temp.push(panels_rollover_1.eq(i).offset().top)
@@ -293,18 +335,21 @@ function Home() {
     }
     useInterval(() => {
         // Apply multiplier to auto zoom speed as well
-        updateZoom(1, AUTO_ZOOM_SPEED += AUTO_ZOOM_SPEED);
+        const newSpeed = autoZoomSpeed + autoZoomSpeed;
+        setAutoZoomSpeed(newSpeed);
+        updateZoom(1, newSpeed);
     }, runTimer ? auto_zoom_delay : null);
     function pauseTimer() {
         setRunTimer(false);
     }
     function autozoom() {   
+        setAutoZoomSpeed(AUTO_ZOOM_SPEED_BASE); // Reset speed when starting
         setRunTimer(true);
     }
 
-    var panels_rollover_1 = $('.panel-rollover-1')
-    var _window = $(window);
     function update_windows_rollover_1() {
+        var panels_rollover_1 = $('.panel-rollover-1')
+        var _window = $(window);
         var y = _window.scrollTop();
         // console.log(y)
         for(var i = 1, l = panels_rollover_1.length; i < l; i++) {
@@ -327,10 +372,8 @@ function Home() {
     }, [rerender])
 
     /**********************************************
-        Get Data States and Hooks
+        Get Data Hooks
     ***********************************************/
-    const [educationData, setEducationData] = React.useState([])    
-    const [experienceData, setExperienceData] = React.useState([])
     React.useEffect(() => {
         getData("education", (data)=> {
             setEducationData(data)
@@ -443,25 +486,11 @@ function Home() {
              ************************************************************************************************************************************************************************************************/}
             <div className="experiencescreen">
                 <div className="maxwidthcenterwrapper">
-                    <div className="row">
-                        <div className="ag-timeline-block" style={{marginTop: "10px"}}>
-                            <div className="ag-timeline_title-box">
-                                <div className="ag-timeline_title whitetext text350 bold900 spacedLetters005 lineheight70">Experience</div>
-                            </div>
-
-                            <section className="ag-section">
-                                <div className="ag-format-container">
-                                    <div className="js-timeline ag-timeline">
-                                        <div className="js-timeline_line ag-timeline_line">
-                                            <div className="js-timeline_line-progress ag-timeline_line-progress"></div>
-                                        </div>
-                                        <div className="ag-timeline_list">
-                                            {experienceData.map((d, i) => <ExperienceComponent data={d} left={i%2===0} />)}
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
+                    <div className="experience-header">
+                        <h2 className="experience-title whitetext text350 bold900 spacedLetters005 lineheight70">Experience</h2>
+                    </div>
+                    <div className="experience-grid">
+                        {experienceData.map((d, i) => <ExperienceComponent key={i} data={d} index={i} />)}
                     </div>
                  </div>
             </div>
@@ -595,41 +624,44 @@ function EducationComponent(props) {
 }
 
 function ExperienceComponent(props) {
-    let { data, left} = props
+    let { data, index } = props
+    
+    // Check if there's a short description, otherwise use the full description
+    const hasShortDescription = data.shortDescription && data.shortDescription.trim().length > 0;
+    
     return(
-        <div className="js-timeline_item ag-timeline_item">
-            <div className="ag-timeline-card_box">
-            {
-                left &&
-                (<div className="js-timeline-card_point-box ag-timeline-card_point-box"><div className="ag-timeline-card_point">{}</div></div>)
-            }
-            <div className="ag-timeline-card_meta-box">
-                <div className="ag-timeline-card_meta"><span className="actualcompanyname">{data.company}</span></div>
-            </div>
-            {
-                !left &&
-                (<div className="js-timeline-card_point-box ag-timeline-card_point-box"><div className="ag-timeline-card_point"></div></div>)
-            }
-            </div>
-            <div className="ag-timeline-card_item">
-                <div className="ag-timeline-card_inner">
-                    <div className="ag-timeline-card_img-box">
-                        <img src={data.image} className="ag-timeline-card_img" width="640" height="360" alt={data.comapny + " image"} />
-                        <div className="image_experience_cover" style={{height: "360px"}}></div>
-                        <div className="image_experience_text_wrapper" style={{height: "360px"}}>
-                            <span className="image_experience_text">{data.position}</span>
-                            <span className="image_experience_company">{data.company}</span>
-                            <span className="image_experience_dates">{data.years}</span>
+        <div className={`experience-card experience-card-${index}`} data-index={index}>
+            <div className="experience-card-inner">
+                <div className="experience-top">
+                    {data.image && (
+                        <div className="experience-image">
+                            <img src={data.image} alt={`${data.company} logo`} />
                         </div>
-                    </div>
-                    <div className="ag-timeline-card_info">
-                    {/* <div className="ag-timeline-card_title">Season 1</div> */}
-                    <div className="ag-timeline-card_desc">
-                        {Li(data.impact, "text125 textwhite bold500 mtop20 textalignleft")}
-                    </div>
+                    )}
+                    <div className="experience-header">
+                        <h3 className="experience-position">{data.position}</h3>
+                        <div className="experience-company">{data.company}</div>
                     </div>
                 </div>
-                <div className="ag-timeline-card_arrow"></div>
+                
+                <div className="experience-meta" style={{justifyContent: data.location ? "center" : "flex-start"}}>
+                    <span className="experience-dates">{data.years}</span>
+                    {data.location && <span className="experience-dates">{data.location}</span>}
+                </div>
+                
+                <div className="experience-description">
+                    {hasShortDescription ? (
+                        <p className="experience-short-desc">{data.shortDescription}</p>
+                    ) : (
+                        Array.isArray(data.impact) ? (
+                            <ul>
+                                {data.impact.map((item, i) => <li key={i}>{item}</li>)}
+                            </ul>
+                        ) : (
+                            <p>{data.impact}</p>
+                        )
+                    )}
+                </div>
             </div>
         </div>
     )
