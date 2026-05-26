@@ -591,13 +591,13 @@ function Home() {
                                 </div>
                                 <div className="col-lg-6">
                                     <p className="aboutmefulltext bold500 text150 mtop50 mleft20">
-                                        Hey, Thanks for stopping by! I'm a student at the University of Pennsylvania (co '27) pursuing a dual degree as part of the Jerome Fisher Program in Management and Technology.
+                                        Hey, Thanks for stopping by! I'm a student at the University of Pennsylvania (co '27) pursuing a dual degree as part of the Jerome Fisher Program in Management and Technology, and a simultaneous Master's in Applied Math.
                                         <br /><br />
-                                        I'm originally from Dallas. As a child I loved to build entire empires from legos. I now have a passion for building things a bit more intricate, like <span className="anchorwrapper"><a href="https://github.com/pulkith" target="_blank">websites & apps</a></span>, <a href="https://coyotronicsfrchhs.wixsite.com/8816" target="_blank"> robots</a>, and a <a href="https://www.crunchbase.com/organization/neurose" target="_blank">startup</a>.
+                                        I'm originally from Dallas. As a child I loved to build entire empires from Legos. I now have a passion for building things a bit more serious, like <span className="anchorwrapper"><a href="https://github.com/pulkith" target="_blank">websites & apps</a></span>, <a href="https://coyotronicsfrchhs.wixsite.com/8816" target="_blank"> robots</a>, and a <a href="https://www.crunchbase.com/organization/neurose" target="_blank">startup</a>.
                                         <br /><br />
                                         I'm also interested in research, especially in Machine Learning, Large Language Models, and Computational Neuroscience. Checkout my papers <a href="https://research.pulkith.com" target="_blank">here</a>. 
                                         <br /><br />
-                                        In my spare time, I enjoy reading, exploring, volleyball, F1, poker, competitive programming, playing the guitar, and quesidillas.
+                                        In my spare time, I enjoy reading, exploring and traveling, photography, playing volleyball, F1, poker, competitive programming, playing the guitar, prediction markets, and quesadillas.
                                     </p>
                                 </div>
                             </div>
