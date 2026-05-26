@@ -69,6 +69,7 @@ function Home() {
         const [gridConfig, setGridConfig] = React.useState([])
         const [expandedProject, setExpandedProject] = React.useState(null)
         const [hoverTimer, setHoverTimer] = React.useState(null)
+        const [showPhotographyBanner, setShowPhotographyBanner] = React.useState(true)
         
     /**********************************************
         Hooks
@@ -166,6 +167,17 @@ function Home() {
 
         return () => observer.disconnect();
     }, [experienceData])
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            setShowPhotographyBanner(window.scrollY < 72);
+        };
+
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [])
 
     // Optimize projects grid when data changes
     React.useEffect(() => {
@@ -513,6 +525,21 @@ function Home() {
   return (
     setRerender,
     <div className="HOME ">
+        <div className={`top-banner-shell ${showPhotographyBanner ? 'is-visible' : 'is-hidden'}`}>
+            <div className="top-banner fadein">
+                <span className="top-banner-kicker">New</span>
+                <span className="top-banner-copy">Check out my new photography portfolio.</span>
+                <a
+                    className="top-banner-link"
+                    href="https://photography.pulkith.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Visit site
+                    <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </div>
         <div className="landingtotal" style={{display: !goPastLanding ? "block" : "none"}}>
             <div className="landingwrapper">
                 <div className="imagewrapper">
@@ -921,5 +948,4 @@ function useInterval(callback, delay) {
 
 
 export default Home;
-
 
